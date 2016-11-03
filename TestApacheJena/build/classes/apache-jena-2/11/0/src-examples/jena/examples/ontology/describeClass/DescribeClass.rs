@@ -1,0 +1,1 @@
+jena.examples.ontology.describeClass.DescribeClass

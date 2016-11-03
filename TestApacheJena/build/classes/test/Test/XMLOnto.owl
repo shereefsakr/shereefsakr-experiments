@@ -1,0 +1,453 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#"
+     xml:base="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     
+>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15">
+        <rdfs:comment>XML Ontology describes contract charge items and discounts applyed</rdfs:comment>
+       
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscount -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscount">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasChargeItem -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasChargeItem">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Contract"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasContract -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasContract">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Contract"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Customer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hascustAppliedDiscount -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hascustAppliedDiscount">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Customer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAccountingPeriod -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAccountingPeriod">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountAmount -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountAmount">
+        <rdfs:comment>it reads this value from the SUM or INVINFO according to Cust Discount or Cont Discount
+reads the charge in Charge Id=&quot;53&quot;
+
+=========================================
+&lt;PromoItem Type=&quot;DISCOUNT&quot; Mech=&quot;N25AM&quot; ApplValue=&quot;25.00&quot; ApplType=&quot;REL&quot;&gt;
+&lt;PromoElemRef CustId=&quot;CUST0000020580&quot; AssSeqNo=&quot;0&quot; PackId=&quot;N25D&quot; ModelId=&quot;N25DM&quot; ElemId=&quot;N25ME&quot; ElemVers=&quot;1&quot; /&gt;
+&lt;Charge Id=&quot;53&quot; Amount=&quot;5.25&quot; CurrCode=&quot;EGP&quot; Type=&quot;9&quot; PT=&quot;P&quot; /&gt;
+&lt;/PromoItem&gt;
+=========================================</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountApplType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountApplType">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountApplValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountApplValue">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountCoId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountCoId">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountCustId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountCustId">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountPackId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountPackId">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasAppliedDiscountType">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasChargeType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasChargeType">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasCocode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasCocode">
+        <rdfs:comment>it read from SUM XML 
+
+================================
+&lt;Contract Id=&quot;CONTR0032420735&quot; MRKT=&quot;GSM&quot; SM=&quot;8920022010404118766&quot; BOPInd=&quot;N&quot; &gt;
+================================</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Contract"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasContractAccessChargeTaxed -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasContractAccessChargeTaxed">
+        <rdfs:comment>Total Access fees charge per contract
+
+it reads from SUM XML :	
+    932		total amount per contract and charge type (gross part)
+===============================
+&lt;Charge Id=&quot;932&quot; Amount=&quot;40.76&quot; CurrCode=&quot;EGP&quot; Type=&quot;9&quot; PT=&quot;P&quot; /&gt;
+===============================</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Contract"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasContractAcessCharge -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasContractAcessCharge">
+        <rdfs:comment>Total Access fees charge per contract
+
+it reads from SUM XML :	
+    832		total amount per contract and charge type (net part)
+===============================
+&lt;Charge Id=&quot;832&quot; Amount=&quot;246.31&quot; CurrCode=&quot;EGP&quot; Type=&quot;9&quot; PT=&quot;P&quot; /&gt;
+===============================</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Contract"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasContractAcessChargeBeforeDisc -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasContractAcessChargeBeforeDisc">
+        <rdfs:comment>Total Access fees charge per contract without discount (before apply discount)
+
+it reads from SUM XML :	
+    838		total flat amount (without discounts) per contract and charge type (net part)
+===============================
+&lt;Charge Id=&quot;838&quot; Amount=&quot;250.51&quot; CurrCode=&quot;EGP&quot; Type=&quot;9&quot; PT=&quot;P&quot; /&gt;
+===============================</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Contract"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasCustNum -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasCustNum">
+        <rdfs:comment>it read from SUM XML 
+
+================================
+&lt;CustRef Id=&quot;CUST0030633981&quot; CustCode=&quot;1.40550950&quot;&gt;
+================================</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Customer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasNumOfDays -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasNumOfDays">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasOrginalPrice -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasOrginalPrice">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasOverwriteInd -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasOverwriteInd">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasParamDesc -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasParamDesc">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasParamValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasParamValue">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasSN -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasSN">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasSP -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasSP">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTM -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTM">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTMVersion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTMVersion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTaxAmount -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTaxAmount">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTaxCalcMethod -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTaxCalcMethod">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTaxExemption -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTaxExemption">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTaxRate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTaxRate">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTotalCharge -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTotalCharge">
+        <rdfs:comment>Total Charge per Sumitem, and use Type 19 -rounded amount as PE
+
+it reads from SUM XML:
+====================================
+&lt;Charge Id=&quot;125&quot; Amount=&quot;32.26&quot; CurrCode=&quot;EGP&quot; Type=&quot;19&quot; PT=&quot;P&quot; /&gt;
+====================================</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTotalChargeBeforeDisc -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#hasTotalChargeBeforeDisc">
+        <rdfs:comment>Charge per Service Status and its value is before applying any discount &quot;Charge Id=&quot;60&quot;
+and this charges aggregated for all &quot;SrvStatus&quot; tags inside the SumItem
+
+it reads from SUM XML:
+====================================
+&lt;SrvStatus Status=&quot;a&quot; &gt;
+&lt;Date Type=&quot;START&quot; Date=&quot;20130530&quot; /&gt;
+&lt;Date Type=&quot;END&quot; Date=&quot;20130608&quot; /&gt;
+&lt;Charge Id=&quot;60&quot; Amount=&quot;32.26&quot; CurrCode=&quot;EGP&quot; Type=&quot;9&quot; PT=&quot;P&quot; /&gt;
+&lt;/SrvStatus&gt;
+====================================</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#AppliedDiscount"/>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#ChargeItem">
+        <rdfs:comment>It refers to XML SumItem Attribute
+aggregation should done for:
+-All SrvStatus Tag
+-All Tax Tag
+and for each PromoItem Tag, there is a link between chargeitem to its discount
+
+=========================================
+&lt;SumItem PT=&quot;P&quot; ArticleString=&quot;782.1.1.1.A.AC.P.P&quot; LZString=&quot;&quot; ChargingPeriod=&quot;1 Months&quot; IndividualChargingPeriod=&quot;N&quot; NumItems=&quot;1&quot; NumDays=&quot;7&quot; &gt;
+&lt;AggSet&gt;
+&lt;Att Ty=&quot;PRO&quot; Id=&quot;MISRF&quot; /&gt;
+&lt;Att Ty=&quot;TM&quot; Id=&quot;2RC25&quot; /&gt;
+&lt;Att Ty=&quot;SP&quot; Id=&quot;BSP&quot; /&gt;
+&lt;Att Ty=&quot;SN&quot; Id=&quot;TEL&quot; /&gt;
+&lt;/AggSet&gt;
+&lt;Charge Id=&quot;125&quot; Amount=&quot;4.24&quot; CurrCode=&quot;EGP&quot; Type=&quot;9&quot; PT=&quot;P&quot; /&gt;
+&lt;Charge Id=&quot;125&quot; Amount=&quot;4.24&quot; CurrCode=&quot;EGP&quot; Type=&quot;19&quot; PT=&quot;P&quot; /&gt;
+&lt;Charge Id=&quot;203&quot; Amount=&quot;4.88&quot; CurrCode=&quot;EGP&quot; Type=&quot;19&quot; PT=&quot;P&quot; /&gt;
+&lt;Price Price=&quot;25.00&quot; CurrCode=&quot;EGP&quot; /&gt;
+&lt;SrvStatus Status=&quot;a&quot; &gt;
+&lt;Date Type=&quot;START&quot; Date=&quot;20130122&quot; /&gt;
+&lt;Date Type=&quot;END&quot; Date=&quot;20130128&quot; /&gt;
+&lt;Charge Id=&quot;60&quot; Amount=&quot;5.65&quot; CurrCode=&quot;EGP&quot; Type=&quot;9&quot; PT=&quot;P&quot; /&gt;
+&lt;/SrvStatus&gt;
+&lt;SrvParams FlexParamDesc=&quot;Subscriber Restriction - SUB_RESTR:SUB_RESTR&quot; ParamDesc=&quot;&quot; ParamVal=&quot;&quot; &gt;
+&lt;Date Type=&quot;SRV_START&quot; Date=&quot;20130122&quot; /&gt;
+&lt;/SrvParams&gt;
+&lt;PromoItem Type=&quot;DISCOUNT&quot; Mech=&quot;N25AM&quot; ApplValue=&quot;25.00&quot; ApplType=&quot;REL&quot;&gt;
+&lt;PromoElemRef CustId=&quot;CUST0000020580&quot; AssSeqNo=&quot;0&quot; PackId=&quot;N25D&quot; ModelId=&quot;N25DM&quot; ElemId=&quot;N25ME&quot; ElemVers=&quot;1&quot; /&gt;
+&lt;Charge Id=&quot;53&quot; Amount=&quot;1.41&quot; CurrCode=&quot;EGP&quot; Type=&quot;9&quot; PT=&quot;P&quot; /&gt;
+&lt;/PromoItem&gt;
+&lt;Tax ItemType=&quot;3&quot; Cat=&quot;Taxes (15%)&quot; Name=&quot;UAT Value Added Tax 15%&quot; LegalCode=&quot;VAT 15%&quot; Rate=&quot;15.00000&quot; CalcMethod=&quot;R&quot; Exemption=&quot;S&quot;&gt;
+&lt;Charge Id=&quot;124&quot; Amount=&quot;0.64&quot; CurrCode=&quot;EGP&quot; Type=&quot;5&quot; PT=&quot;P&quot; /&gt;
+&lt;Charge Id=&quot;125&quot; Amount=&quot;4.24&quot; CurrCode=&quot;EGP&quot; Type=&quot;9&quot; PT=&quot;P&quot; /&gt;
+&lt;/Tax&gt;
+&lt;/SumItem&gt;
+&lt;SumItem PT=&quot;P&quot; ArticleString=&quot;783.1.1.1.A.AC.P.P&quot; LZString=&quot;&quot; ChargingPeriod=&quot;1 Months&quot; IndividualChargingPeriod=&quot;N&quot; NumItems=&quot;1&quot; NumDays=&quot;13&quot; &gt;
+=========================================
+</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Contract -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Contract">
+        <rdfs:comment>It refers to BSCS Contract ID</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Customer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15#Customer">
+        <rdfs:comment>It refers to BSCS Customer ID</rdfs:comment>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

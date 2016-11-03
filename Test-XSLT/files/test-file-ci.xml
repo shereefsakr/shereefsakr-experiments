@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Edited by XMLSpy -->
+<Root>
+	<Services>
+		<Service>
+			<Service_ID>101</Service_ID>
+			<Package_ID>1</Package_ID>
+			<Package_Name>MyPackage</Package_Name>
+			<OptInDate>2013-09-15</OptInDate>
+			<subscriber_status>active</subscriber_status>
+		</Service>
+		<Service>
+			<Service_ID>102</Service_ID>
+			<Package_ID>1</Package_ID>
+			<Package_Name>MyPackage2</Package_Name>
+			<OptInDate>2013-09-16</OptInDate>
+			<subscriber_status>active</subscriber_status>
+		</Service>
+	</Services>
+	<DAs>
+		<DA id ="1" value="50" expiryDate="2014-05-05"></DA>
+		<DA id ="2" value="150" expiryDate="2014-05-05"></DA>
+	</DAs>
+</Root>

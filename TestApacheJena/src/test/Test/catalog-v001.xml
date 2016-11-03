@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1386087287172" name="http://www.owl-ontologies.com/travel.owl" uri="travel.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1386087287172" name="http://www.semanticweb.org/hsaber/ontologies/2013/5/untitled-ontology-15" uri="XMLOnto.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1386087287172" name="http://www.vodafone.com.eg/ontologies/2013/6/28/ContractProfileDynamicOntology" uri="DB_Dynamic_Contract_profile_ontology.owl"/>
+    </group>
+</catalog>

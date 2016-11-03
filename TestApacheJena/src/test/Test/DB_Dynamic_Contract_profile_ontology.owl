@@ -1,0 +1,766 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.vodafone.com.eg/ontologies/2013/6/28/ContractProfileDynamicOntology"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.vodafone.com.eg/ontologies/2013/6/28/ContractProfileDynamicOntology">
+    <Prefix name="" IRI="http://www.vodafone.com.eg/ontologies/2013/6/28/ContractProfileDynamicOntology#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://www.vodafone.com.eg/ontologies/2013/6/28/ContractProfileDynamicOntology</Import>
+    <Declaration>
+        <Class IRI="#CP_Contract_TimeSlice"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CP_Interval"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CP_MSISDN_TimeSlice"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CP_RatePlanConfig_TimeSlice"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CP_RatePlan_TimeSlice"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CP_SIM_TimeSlice"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CP_ServiceParameter_TimeSlice"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CP_Service_TimeSlice"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Contract"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Customer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MSISDN"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RatePlan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RatePlanConfig"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SIM"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Service"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ServiceParameter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Belong_to_Customer"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_Contract_Has_Interval"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_Contract_Ts_Of"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_MSISDN_Has_Interval"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_MSISDN_Ts_Of"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_RatePlanConfig_Has_Interval"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_RatePlanConfig_Ts_Of"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_RatePlan_Has_Interval"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_RatePlan_Ts_Of"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_SIM_Has_Interval"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_SIM_Ts_Of"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_ServiceParameter_Has_Interval"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_ServiceParameter_Ts_Of"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_Service_Has_Interval"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#CP_Service_Ts_Of"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Has_MSISDN"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Has_Parameter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Has_Parent_Customer"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Has_RatePlan"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Has_RatePlanConfig"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Has_SIM"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Has_Service"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#AccessFees"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CD_ACTIV_DATE"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CD_DEACTIV_DATE"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CD_STATUS"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CS_ACTIV_DATE"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CS_DEACTIV_DATE"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CS_STATUS"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CoCode"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CoId"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ContractActivationReason"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ContractStatus"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CustCode"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#CustomerId"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ForService"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ForServicePackage"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#IntEnd"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#IntStart"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#MSISDNumber"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ParamValueDate"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ParamValueNumber"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ParamValueString"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#RatePlanName"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#SIMNum"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ServiceName"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ServiceParamId"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ServiceParamName"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ServiceStatus"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#Tmcode"/>
+    </Declaration>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#Belong_to_Customer"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_Contract_Has_Interval"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_Contract_Ts_Of"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_MSISDN_Has_Interval"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_MSISDN_Ts_Of"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_RatePlanConfig_Has_Interval"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_RatePlanConfig_Ts_Of"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_RatePlan_Has_Interval"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_RatePlan_Ts_Of"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_SIM_Has_Interval"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_SIM_Ts_Of"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_ServiceParameter_Has_Interval"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_ServiceParameter_Ts_Of"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_Service_Has_Interval"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#CP_Service_Ts_Of"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#Has_MSISDN"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#Has_Parent_Customer"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#Has_RatePlan"/>
+    </FunctionalObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Belong_to_Customer"/>
+        <Class IRI="#Contract"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_Contract_Has_Interval"/>
+        <Class IRI="#CP_Contract_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_Contract_Ts_Of"/>
+        <Class IRI="#CP_Contract_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_MSISDN_Has_Interval"/>
+        <Class IRI="#CP_MSISDN_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_MSISDN_Ts_Of"/>
+        <Class IRI="#CP_MSISDN_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_RatePlanConfig_Has_Interval"/>
+        <Class IRI="#CP_RatePlanConfig_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_RatePlanConfig_Ts_Of"/>
+        <Class IRI="#CP_RatePlanConfig_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_RatePlan_Has_Interval"/>
+        <Class IRI="#CP_RatePlan_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_RatePlan_Ts_Of"/>
+        <Class IRI="#CP_RatePlan_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_SIM_Has_Interval"/>
+        <Class IRI="#CP_SIM_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_SIM_Ts_Of"/>
+        <Class IRI="#CP_SIM_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_ServiceParameter_Has_Interval"/>
+        <Class IRI="#CP_ServiceParameter_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_ServiceParameter_Ts_Of"/>
+        <Class IRI="#CP_ServiceParameter_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_Service_Has_Interval"/>
+        <Class IRI="#CP_Service_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#CP_Service_Ts_Of"/>
+        <Class IRI="#CP_Service_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Has_MSISDN"/>
+        <Class IRI="#CP_Contract_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Has_Parameter"/>
+        <Class IRI="#CP_Service_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Has_Parent_Customer"/>
+        <Class IRI="#Customer"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Has_RatePlan"/>
+        <Class IRI="#CP_Contract_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Has_RatePlanConfig"/>
+        <Class IRI="#CP_RatePlan_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Has_SIM"/>
+        <Class IRI="#CP_Contract_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Has_Service"/>
+        <Class IRI="#CP_Contract_TimeSlice"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Belong_to_Customer"/>
+        <Class IRI="#Customer"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_Contract_Has_Interval"/>
+        <Class IRI="#CP_Interval"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_Contract_Ts_Of"/>
+        <Class IRI="#Contract"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_MSISDN_Has_Interval"/>
+        <Class IRI="#CP_Interval"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_MSISDN_Ts_Of"/>
+        <Class IRI="#MSISDN"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_RatePlanConfig_Has_Interval"/>
+        <Class IRI="#CP_Interval"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_RatePlanConfig_Ts_Of"/>
+        <Class IRI="#RatePlanConfig"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_RatePlan_Has_Interval"/>
+        <Class IRI="#CP_Interval"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_RatePlan_Ts_Of"/>
+        <Class IRI="#RatePlan"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_SIM_Has_Interval"/>
+        <Class IRI="#CP_Interval"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_SIM_Ts_Of"/>
+        <Class IRI="#SIM"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_ServiceParameter_Has_Interval"/>
+        <Class IRI="#CP_Interval"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_ServiceParameter_Ts_Of"/>
+        <Class IRI="#ServiceParameter"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_Service_Has_Interval"/>
+        <Class IRI="#CP_Interval"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#CP_Service_Ts_Of"/>
+        <Class IRI="#Service"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Has_MSISDN"/>
+        <Class IRI="#CP_MSISDN_TimeSlice"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Has_Parameter"/>
+        <Class IRI="#CP_ServiceParameter_TimeSlice"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Has_Parent_Customer"/>
+        <Class IRI="#Customer"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Has_RatePlan"/>
+        <Class IRI="#CP_RatePlan_TimeSlice"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Has_RatePlanConfig"/>
+        <Class IRI="#CP_RatePlanConfig_TimeSlice"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Has_SIM"/>
+        <Class IRI="#CP_SIM_TimeSlice"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Has_Service"/>
+        <Class IRI="#CP_Service_TimeSlice"/>
+    </ObjectPropertyRange>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#AccessFees"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CD_ACTIV_DATE"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CD_DEACTIV_DATE"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CD_STATUS"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CS_ACTIV_DATE"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CS_DEACTIV_DATE"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CS_STATUS"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CoCode"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CoId"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ContractActivationReason"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ContractStatus"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CustCode"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#CustomerId"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ForService"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ForServicePackage"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#IntEnd"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#IntStart"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#MSISDNumber"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ParamValueDate"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ParamValueNumber"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ParamValueString"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#RatePlanName"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#SIMNum"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ServiceName"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ServiceParamId"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ServiceParamName"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#ServiceStatus"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#Tmcode"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="#AccessFees"/>
+        <Class IRI="#CP_RatePlanConfig_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CD_ACTIV_DATE"/>
+        <Class IRI="#CP_SIM_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CD_DEACTIV_DATE"/>
+        <Class IRI="#CP_SIM_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CD_STATUS"/>
+        <Class IRI="#CP_SIM_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CS_ACTIV_DATE"/>
+        <Class IRI="#CP_MSISDN_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CS_DEACTIV_DATE"/>
+        <Class IRI="#CP_MSISDN_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CS_STATUS"/>
+        <Class IRI="#CP_MSISDN_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CoCode"/>
+        <Class IRI="#Contract"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CoId"/>
+        <Class IRI="#Contract"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ContractActivationReason"/>
+        <Class IRI="#CP_Contract_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ContractStatus"/>
+        <Class IRI="#CP_Contract_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CustCode"/>
+        <Class IRI="#Customer"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#CustomerId"/>
+        <Class IRI="#Customer"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ForService"/>
+        <Class IRI="#RatePlanConfig"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ForServicePackage"/>
+        <Class IRI="#RatePlanConfig"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#IntEnd"/>
+        <Class IRI="#CP_Interval"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#IntStart"/>
+        <Class IRI="#CP_Interval"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#MSISDNumber"/>
+        <Class IRI="#MSISDN"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ParamValueDate"/>
+        <Class IRI="#CP_ServiceParameter_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ParamValueNumber"/>
+        <Class IRI="#CP_ServiceParameter_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ParamValueString"/>
+        <Class IRI="#CP_ServiceParameter_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#RatePlanName"/>
+        <Class IRI="#RatePlan"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#SIMNum"/>
+        <Class IRI="#SIM"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ServiceName"/>
+        <Class IRI="#Service"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ServiceParamId"/>
+        <Class IRI="#ServiceParameter"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ServiceParamName"/>
+        <Class IRI="#ServiceParameter"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ServiceStatus"/>
+        <Class IRI="#CP_Service_TimeSlice"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#Tmcode"/>
+        <Class IRI="#RatePlan"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#AccessFees"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CD_ACTIV_DATE"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CD_DEACTIV_DATE"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CD_STATUS"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CS_ACTIV_DATE"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CS_DEACTIV_DATE"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CS_STATUS"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CoCode"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CoId"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ContractActivationReason"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ContractStatus"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CustCode"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#CustomerId"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ForService"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ForServicePackage"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#IntEnd"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#IntStart"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#MSISDNumber"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ParamValueDate"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ParamValueNumber"/>
+        <Datatype abbreviatedIRI="xsd:float"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ParamValueString"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#RatePlanName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#SIMNum"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ServiceName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ServiceParamId"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ServiceParamName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#ServiceStatus"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#Tmcode"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

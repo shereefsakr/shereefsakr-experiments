@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration>
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss,SSS} [%t] %-5p %c %x - %m%n"/>
+		</layout>
+	</appender>
+        <appender name="stdout2" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss,SSS} [%t] %-5p %c %x - %m%n"/>
+		</layout>
+	</appender>
+        <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+            <param name="BufferSize" value="500"/>
+            <appender-ref ref="stdout"/>
+        </appender>
+        <appender name="ASYNC2" class="org.apache.log4j.AsyncAppender">
+            <param name="BufferSize" value="500"/>
+            <appender-ref ref="stdout2"/>
+        </appender>
+	<root>
+		<priority value="debug"></priority>
+		<appender-ref ref="ASYNC"/>
+	</root>
+</log4j:configuration>
