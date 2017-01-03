@@ -31,9 +31,46 @@ public class JSoupTest {
             // Begin : Testing different bank configurations
             
             // National Bank of Egypt
-            //*
+            /*
             url = "http://www.nbe.com.eg/en/ExchangeRate.aspx" ;
             selectExpr = "#dgPrices tr.td1" ;
+            //*/
+            
+            // AAIB
+            /*
+            url = "http://aaib.com/services/rates" ;
+            selectExpr = "#rates-table tr" ;
+            //*/
+            
+            // Central Bank of Egyt
+            /*
+            url = "http://www.cbe.org.eg/en/EconomicResearch/Statistics/Pages/OfficialRatesListing.aspx" ;
+            selectExpr = "table.table tbody tr" ;
+            //*/
+            
+            // Banque Misr
+            // Ignore first two lines
+            /*
+            url = "http://www.banquemisr.com/en/pages/exchangerates.aspx" ;
+            selectExpr = "table.tabularData tbody tr" ;
+            //*/
+            
+            // CIB
+            //*
+            url = "http://www.cibeg.com/English/Pages/CIBCurrencies.aspx" ;
+            selectExpr = "table tbody tr" ;
+            //*/
+            
+            // AAIB
+            /*
+            url = "http://aaib.com/services/rates" ;
+            selectExpr = "#rates-table tr" ;
+            //*/
+            
+            // AAIB
+            /*
+            url = "http://aaib.com/services/rates" ;
+            selectExpr = "#rates-table tr" ;
             //*/
             
             // AAIB
