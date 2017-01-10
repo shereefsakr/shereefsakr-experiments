@@ -34,9 +34,11 @@ public class MockitoTesting {
         
         //Mockito.when( test.getVariable2() ).thenReturn( "shereef" ) ;
         Mockito.when( test.getVariable( Mockito.any( Integer.class ) ) ).thenReturn( "mocked return" ) ;
+        Mockito.when( test.getVariable( 1 ) ).thenReturn( "mocked return 1" ) ;
         Mockito.when( test.getVariable2() ).thenCallRealMethod() ;
         
         System.out.println ( test.getVariable( 1 ) ) ;
+        System.out.println ( test.getVariable( 2 ) ) ;
         System.out.println ( test.getVariable2 () ) ;
         test.doVoid();
     }

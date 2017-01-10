@@ -10,7 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-s
+
 /**
  *
  * @author Sherif Saqr
@@ -79,7 +79,7 @@ public class TestJSchShell {
             
             String result = new String( outStream.toByteArray() );
             
-            System.out.println ( result ) ;
+            System.out.println ( "Result : " + result ) ;
             
             channel.disconnect();
             

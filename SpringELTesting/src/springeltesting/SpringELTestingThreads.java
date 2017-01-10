@@ -12,6 +12,7 @@ import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.SpelParserConfiguration;
+import org.springframework.expression.spel.standard.SpelExpression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import springeltesting.testContext;
@@ -23,79 +24,53 @@ import springeltesting.testContext;
 public class SpringELTestingThreads {
     
     public static class testContext {
-    public boolean in(String x, String... actuals){
-        boolean exist = false;
-        for(String actual : actuals){
-            if(actual.equals(x)){
-                exist = true;
-            }
+        public Integer i = null ;
+        
+        public testContext () {
+            this.i = 1 ;
         }
-        return exist;
     }
-    
-    public boolean notIn(String x, String... valuesList){
-       boolean exist = true;
-        for(String actual : valuesList){
-            if(actual.equals(x)){
-                exist = false;
-            }
-        }
-        return exist;
-    }
-}
 
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
-        ExpressionParser parser = new SpelExpressionParser();
-        Expression exp = parser.parseExpression("'Hello World ' + 'Shereef'.concat('!').bytes ");
-        
-        String message = (String) exp.getValue();
-        //*/
-        
-        //SpelParserConfiguration conf = new SpelParserConfiguration(SpelCompi, true)
         
         long startTime = System.currentTimeMillis() ;
-        GregorianCalendar c = new GregorianCalendar();
-        c.set(1856, 7, 9);
-
-        //  The constructor arguments are name, birthday, and nationality.
-        HashMap islam = new HashMap();
-        HashMap tesla = new HashMap();
         
-        islam.put("name", "islam");
-        
-        tesla.put( "name" , "Nikola Tesla" ) ;
-        tesla.put( "date" , c.getTime() ) ;
-        tesla.put( "nation" , "Serbian" ) ;
-        testContext t = new testContext();
         ExpressionParser parser = new SpelExpressionParser();
         
-        Expression exp = parser.parseExpression("['nam' + 'e'] == 'Nikola Tesla' ");
-        EvaluationContext context = new StandardEvaluationContext(tesla);
-        EvaluationContext context2 = new StandardEvaluationContext(t);
-        context.setVariable("testVar", "TestVarValue Shereef" );
+        Expression exp = parser.parseExpression("i++");
         
-        long startTime2 = System.currentTimeMillis() ;
-        Object message = (Object) exp.getValue(context);
-        //Object message2 = (Object) exp2.getValue(context2);
-        System.out.println ( System.currentTimeMillis() - startTime2 ) ;
-        
-        long startTime3 = System.currentTimeMillis() ;
-        message = (Object) exp.getValue(context);
-        System.out.println ( System.currentTimeMillis() - startTime3 ) ;
-        
-        System.out.println ( message ) ;
-        //System.out.println(message2);
-        
-        System.out.println ( System.currentTimeMillis() - startTime ) ;
+        for ( int i = 0 ; i < 30 ; i++ ) {
+            Thread thread = new Thread( new ExpRunnable(i, exp)) ;
+            
+            thread.start () ;
+        }
     }
     
     
     
-    public static class ExpRunnable
-    
+    public static class ExpRunnable implements Runnable {
+        
+        private Integer threadId = null ;
+        private Expression exp = null ;
+        private testContext ctx = null ;
+        
+        public ExpRunnable ( Integer threadId , Expression exp ) {
+            this.threadId = threadId ;
+            this.exp = exp ;
+            this.ctx = new testContext() ;
+        }
+
+        @Override
+        public void run() {
+            for ( int i = 0 ; i < 30000 ; i++ ) {
+                long startTime = System.currentTimeMillis() ;
+                System.out.println ( "ThreadId : " + this.threadId + " , Exp Result : " + this.exp.getValue(this.ctx ) ) ;
+                System.out.println ( "ThreadId : " + this.threadId + " Time : " + ( System.currentTimeMillis() - startTime ) ) ;
+            }
+        }
+    }
 }

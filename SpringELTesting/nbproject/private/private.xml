@@ -6,7 +6,10 @@
         <group/>
         <group name="SMPP_HO"/>
         <group name="TestGroup"/>
-        <group name="Experiments"/>
         <group name="CI-FromAmira-2015-12-21"/>
+        <group name="Experiments">
+            <file>file:/D:/shereefsakr-dev-work/shereefsakr-experiments/SpringELTesting/src/springeltesting/SpringELTestingThreads.java</file>
+            <file>file:/D:/shereefsakr-dev-work/shereefsakr-experiments/SpringELTesting/src/springeltesting/SpringELTesting.java</file>
+        </group>
     </open-files>
 </project-private>
