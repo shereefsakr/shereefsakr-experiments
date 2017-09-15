@@ -1,0 +1,39 @@
+<script type="text/javascript">
+function checkCardExpiryDate(cardMonth,cardYear)
+    {
+        var currentDate=new Date();
+        var currentMonth=currentDate.getMonth();
+        var currentYear=currentDate.getYear();
+        currentYear=String(currentYear);
+        
+		//debugger ;
+        var isValid = false ;
+		var checkMonth = false ;
+        
+        if ( cardYear>currentYear.substring(2,4) ) {
+			isValid = true ;
+        } else if ( cardYear == currentYear.substring(2,4) ) {
+			checkMonth = true ;
+		}
+	
+		
+		if( cardMonth-1>=currentMonth && !isValid && checkMonth )
+		{
+			isValid = true ;
+		}
+        
+        if ( !isValid )
+        {
+            
+            errorMsg='This Credit Card is expired.';
+            alertError(errorMsg);
+            return false;
+        }
+        
+		return true;
+    }
+	
+var result = checkCardExpiryDate ( parseFloat ( "2" ) , parseFloat ( "8" ) ) ;
+document.write ( result ) ;
+
+</script>

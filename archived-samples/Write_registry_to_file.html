@@ -1,0 +1,862 @@
+<script type="text/vbscript">
+
+ Sub printall(Labelarry,valueArray,HeaderLabelArray,HeaderValuesArray)
+    remainLines=0
+    pagelines =0
+    thispage=0
+    valuesHeader=HeaderValuesArray
+    labelsHeader=HeaderLabelArray
+    OpenPort
+    dim i
+    i=0
+    thispage =1
+    SetMargins -1,3,3
+    For t= 1 to 4         ' it suppose to be 4 without the header'
+    objPrinter.WriteLine ""
+    Next
+    line=0
+    pagelines=0
+    totalpages=1
+    dim headerLines
+    headerLines=0
+   IF IsEmpty(HeaderValuesArray) <> True   then  
+    headerlimit= valueLimit+3
+    lines =getlines(valueArray,valueLimit)
+    headerLines=getlines(HeaderValuesArray,headerlimit)
+    headerLines=20-headerLines
+    totalpages = getpages(lines,headerLines)
+    lines=lines+((getlines(HeaderValuesArray,headerlimit))*totalpages)
+    
+    End IF  
+    IF IsEmpty(HeaderValuesArray) = True   then 
+      lines =getlines(valueArray,valueLimit)
+      totalpages = getpages(lines,20)
+     End IF  
+    
+    arrlength =UBound(valueArray)-1
+    headerprint labelsHeader,valuesHeader 
+    
+    
+    For ii=0 to arrlength 
+      index =ii
+      labelwrite(Labelarry(index))
+      Labelsep Labelarry(index)
+      valuewrite Labelarry(index),valueArray(index)
+       
+       
+      
+   IF pagelines = 20 And (lines-remainLines) > 0 then
+       newpage  
+      End IF
+    Next
+    gototail
+    footerprint("")
+    cut
+    ClosePort
+  End Sub
+                                            'new page feeder'
+ Sub newpage( )
+   objPrinter.WriteLine ""
+   footerprint("")
+   'objPrinter.Write(Chr(&H0C))'
+    cut
+   'case no cut use for loop to 8 not 4 '
+  ' For t= 1 to 8       '        
+  ' objPrinter.WriteLine ""'
+   'Next '
+    For t= 1 to 4         ' it suppose to be 4 without the header'
+    objPrinter.WriteLine ""
+    Next
+     pagelines=0
+     headerprint labelsHeader,valuesHeader
+  
+   'pagelines=UBound(valuesHeader)'
+
+ End Sub
+                                             'footerprint '
+ Sub  footerprint(foot)
+  
+    
+    
+    
+  SetTextFormat False, False, True, False, True
+  SetAlignment("c")
+   
+  SetTextFormat False, False, False, False, Flase
+  printline("Page "&thispage&" of "&totalpages)
+  PrintLine("")
+  thispage = thispage+1
+  SetAlignment("l")
+
+ End Sub 
+
+
+
+ Sub  headerprint(ArrayheaderLabel,ArrayheaderVales)
+    
+      SetAlignment("c")
+    IF IsEmpty(ArrayheaderVales) <> True   then   
+      arrlength =0
+      arrlength =UBound(ArrayheaderVales) -1
+      arrlength=arrlength+0
+      For ii=0 to arrlength   
+          index1 =ii
+           IF ArrayheaderLabel(index1)<> "" then
+          labelwrite(ArrayheaderLabel(index1))
+          Labelsep ArrayheaderLabel(index1)
+          End IF
+          valuewriteHeader ArrayheaderLabel(index1),ArrayheaderVales(index1)
+      Next
+     End IF 
+   IF IsEmpty(ArrayheaderVales) = True   then   
+      PrintLine("") 
+     End IF 
+      PrintLine("")
+      SetAlignment("l")
+    
+ End Sub
+                                ' label seprator'
+  Sub Labelsep(label)
+    dim l 
+    dim i
+    i=0
+    l = Len(label)
+    dim n 
+    n = labelLimit - l
+    IF label <> " " then
+        IF n > 0 then
+          For ii=1 to n 
+          objPrinter.Write " "
+          Next
+        End IF
+        IF l > 0 And n >= 0 then
+          objPrinter.Write "  : "
+        ElseIF l > 0 And n < 0 then
+          IF  n = -1 then
+          objPrinter.Write " : "
+          ElseIF  n <-1 then
+          objPrinter.Write ": "
+         End IF
+        End IF
+         IF l = 0 then
+         objPrinter.Write "    "
+         End IF
+    End IF
+  End Sub
+
+                                        '   write label    '
+  Sub labelwrite(label)
+    'set emphases'
+    SetTextFormat False, False, False, False, True
+    IF label <> " " then
+     objPrinter.Write label
+     End IF
+   
+  End sub
+                                        ' write value '
+Sub valuewrite(label,value)
+  SetTextFormat False, False, False, False, Flase
+  Dim linesno
+  Dim arr
+  arr=getarrofrecord(value,valueLimit)
+  linesno = UBound(arr)-1
+  
+  objPrinter.WriteLine arr(0)
+  pagelines = pagelines + 1
+  remainLines= remainLines+1
+  IF pagelines = 20 And linesno = 0  And (lines-remainLines) > 0 then
+     newpage  
+   End IF
+  IF linesno > 0 then
+  For ii=1 to linesno
+  IF pagelines = 20 And (lines-remainLines) > 0 then
+     newpage  
+     labelwrite ("Cnt."&label)
+     Labelsep("Cnt."&label)
+     objPrinter.WriteLine  arr(ii) 
+     pagelines = pagelines + 1
+      remainLines= remainLines+1
+     ii=ii+1
+  End IF
+  IF ii <= linesno then
+   Labelsep("")
+   objPrinter.WriteLine  arr(ii) 
+   pagelines = pagelines + 1
+    remainLines= remainLines+1
+  End If
+  IF ii > linesno then
+     ii=linesno
+     End IF
+     Next
+   End IF
+  End Sub
+
+Sub valuewriteHeader(label,value)
+  SetAlignment("c")
+  Dim linesno
+  Dim arr
+  headerLimit=valueLimit+8
+  arr=getarrofrecord(value,headerLimit)
+  linesno = UBound(arr)-1
+  objPrinter.WriteLine arr(0)
+  pagelines = pagelines + 1
+   remainLines= remainLines+1
+  IF pagelines = 20 And linesno = 0  And (lines-remainLines) > 0  then
+     newpage  
+  End IF
+  IF linesno > 0 then
+  For ii=1 to linesno
+  IF pagelines = 20 And (lines-remainLines) > 0 then
+     newpage  
+     labelwrite ("Cnt."&label)
+     Labelsep("Cnt."&label)
+     objPrinter.WriteLine  arr(ii) 
+     pagelines = pagelines + 1
+      remainLines= remainLines+1
+     ii=ii+1
+  End IF
+  IF ii <= linesno then
+   Labelsep("")
+   objPrinter.WriteLine  arr(ii) 
+   pagelines = pagelines + 1
+  End If
+  IF ii > linesno then
+     ii=linesno
+     End IF
+     Next
+   End IF
+  End Sub
+
+ Sub Cut()
+   CutPaper(2)
+ End Sub
+
+  Sub gototail
+  
+    dim checkspace
+    checkspace =  20-pagelines
+    
+   IF checkspace >= 3 then
+        objPrinter.WriteLine ""
+        objPrinter.WriteLine "PAID TO MOBINIL"
+        objPrinter.WriteLine "THANKS"
+        For ii = pagelines+3 to 20
+        objPrinter.WriteLine ""
+        Next
+  ElseIf checkspace = 2 Then
+   objPrinter.WriteLine "PAID TO MOBINIL"
+        objPrinter.WriteLine "THANKS"
+        For ii = pagelines+2 to 20
+        objPrinter.WriteLine ""
+        Next
+Else 
+      For ii = pagelines to 20
+      objPrinter.WriteLine ""
+      Next
+     End IF
+   
+    pagelines=20
+     remainLines= lines
+  End Sub
+
+
+  Sub openCashDrawer 
+    objPrinter.Write (Chr(&H07))
+  End Sub
+
+
+
+
+
+                                                      'Prints given text and new line'
+
+
+    Public Function PrintLine(strText)
+      objPrinter.WriteLine strText
+    End Function
+                                                               'print this text'
+    Public Function Print(strText)
+      objPrinter.Write strText
+    End Function
+   
+                                                                'Open printing port'
+    Public Function OpenPort()
+      Set objFSO = CreateObject("Scripting.FileSystemObject") 
+      Set objPrinter = objFSO.CreateTextFile("LPT1:", False)
+      NOOFCOPY=NOOFCOPY+1
+      If (NOOFCOPY = 1) Then
+      objPrinter.Write(Chr(&H18)) 
+      objPrinter.Write(Chr(&H1B) + Chr(&H1E) + Chr(&H61)+Chr(0))     ' close auto status trassmition'
+       End If
+    End Function
+    
+                                                                'Close printing port'
+    Public Function ClosePort()
+      objPrinter.Close
+    End Function
+    
+                                                                      'Automatic cutter'
+    Public Function CutPaper(intCutProperty)
+      objPrinter.WriteLine (Chr(&H1B) + "d" + Chr(intCutProperty))
+    End Function
+    
+                                                                              'Line feed'
+    Public Function LineFeed(intLines)
+    objPrinter.Write (Chr(&H1B) + "a" + Chr(intLines))
+    End Function
+
+                                                                              'Set text size'
+    Public Function SetTextSize(intSize)
+        intPrintSize = intSize - 1
+        strSize = (Chr(intPrintSize) & Chr(intPrintSize))
+        objPrinter.Write (Chr(&H1B) + Chr(&H69) + strSize)
+   End Function
+   
+                                                                              'Set dot pitch'
+    Public Function SetDotPitch(intPitch)
+       If (intPitch = 12) Then
+            objPrinter.Write (Chr(&H1B) + Chr(&H4D))
+       ElseIf (intPitch = 14) Then
+            objPrinter.Write (Chr(&H1B) + Chr(&H70))
+       ElseIf (intPitch = 15) Then
+            objPrinter.Write (Chr(&H1B) + Chr(&H50))
+       ElseIf (intPitch = 16) Then
+            objPrinter.Write (Chr(&H1B) + Chr(&H3A))
+       End If
+    End Function
+    
+                                                  'Set page margins'
+    Public Function SetMargins(intBottomMargin, intLeftMargin, intRightMargin)
+        if intBottomMargin <> -1 then
+			objPrinter.Write (Chr(&H1B) + Chr(&H4E) + Chr(intBottomMargin))
+		end if
+        if intLeftMargin <> -1 then
+			objPrinter.Write (Chr(&H1B) + Chr(&H6C) + Chr(intLeftMargin))
+		end if
+        if intRightMargin <> -1 then
+			objPrinter.Write (Chr(&H1B) + Chr(&H51) + Chr(intRightMargin))
+		end if
+    End Function
+    
+                                                     'Sets text format'
+  Public Function SetTextFormat(boolUnderline, boolUpperline, boolHighlight, boolInvert, boolEmphasize)
+      If (boolUnderline) Then
+          objPrinter.Write (Chr(&H1B) + Chr(&H2D) + "1")
+      Else
+          objPrinter.Write (Chr(&H1B) + Chr(&H2D) + "0")
+      End If
+      
+      If (boolUpperline) Then
+          objPrinter.Write (Chr(&H1B) + Chr(&H5F) + "1")
+      Else
+          objPrinter.Write (Chr(&H1B) + Chr(&H5F) + "0")
+      End If
+  
+      If (boolHighlight) Then
+          objPrinter.Write (Chr(&H1B) + "4")
+      Else
+          objPrinter.Write (Chr(&H1B) + "5")
+      End If
+      
+      If (boolInvert) Then
+          objPrinter.Write (Chr(&HF))
+      Else
+          objPrinter.Write (Chr(&H12))
+      End If
+      
+      If (boolEmphasize) Then
+          objPrinter.Write (Chr(&H1B) + "E")
+      Else
+          objPrinter.Write (Chr(&H1B) + "F")
+      End If
+      
+  End Function
+                                              ' set the alignment '
+  Public Function SetAlignment(charAlignment)
+      If (charAlignment = "l") Then
+          objPrinter.Write (Chr(&H1B) + Chr(&H1D) + "a" + Chr(0))
+      ElseIf (charAlignment = "c") Then
+          objPrinter.Write (Chr(&H1B) + Chr(&H1D) + "a" + Chr(1))
+      ElseIf (charAlignment = "r") Then
+          objPrinter.Write (Chr(&H1B) + Chr(&H1D) + "a" + Chr(2))
+      End If
+      
+  End Function
+                                               'print logo '
+  Public Function PrintLogo (intLogoNumber, intLogoSize)
+      intLogoSize = intLogoSize - 1
+      objPrinter.WriteLine (Chr(&H1B) + Chr(&H1C) + "p" + Chr(intLogoNumber) + Chr(intLogoSize))
+  End Function
+                                              'print bar code'
+  Public Function PrintBarCode(strCodeData)
+      objPrinter.WriteLine (Chr(&H1B) + Chr(&H62) + Chr(&H6) + Chr(&H4) + "3" + "1" + strCodeData + Chr(&H1E))
+  End Function
+                                              'reset all'
+  Public Function ResetAll ()
+  'Text size'
+  objPrinter.Write (Chr(&H1B) + Chr(&H69) + "00")
+  'Dot Pitch'
+  objPrinter.Write (Chr(&H1B) + Chr(&H4D))
+  'Align left'
+  objPrinter.Write (Chr(&H1B) + Chr(&H1D) + "a" + Chr(0))
+  'Underline'
+  objPrinter.Write (Chr(&H1B) + Chr(&H2D) + "0")
+  'Upperline'
+  objPrinter.Write (Chr(&H1B) + Chr(&H5F) + "0")
+  'Highlight'
+  objPrinter.Write (Chr(&H1B) + "5")
+  'Invert'
+  objPrinter.Write (Chr(&H12))
+  'Emphasize'
+  objPrinter.Write (Chr(&H1B) + "F")
+  End Function
+                                        ' Detect data total Number of lines '
+  Function getlines(ar,limit)
+    dim line 
+    dim  lines
+    dim tempstring
+    dim i
+    line =0 
+    lines =0  
+    i=0
+    dim size
+    size =UBound(ar)
+    Do While i< size  
+      tempstring=ar(i)
+      line = len(tempstring)
+      line = len(tempstring) /limit 
+      line = ceil(line) 
+      If line > 1 Then
+        'lines= lines + line '
+         lines= lines + getLinesInwarpp(tempstring,limit)
+      ElseIf line <= 1  Then
+        lines= lines+1
+      End If
+      i=i+1
+    Loop
+    getlines = lines
+  End Function
+
+                                        ' Detect data total Number of Pages '
+
+  Function getpages(lines,nooflinesperpage)
+  
+    dim  pages1 
+    pages1 = 0
+    pages1= lines/nooflinesperpage
+    pages1 =ceil(pages1)
+    getpages= pages1
+    
+  End Function
+
+  
+ 
+
+
+ 
+
+   Function getarrofrecord(value2,limit)
+        
+        dim arrayCounter
+        arrayCounter=0
+        dim mainString 
+        dim temString1
+        dim chekarabic1
+        chekarabic1="false"
+        dim lastIndexOfspace
+        lastIndexOfspace=0  
+        dim testArray() 
+        dim lines1
+        lines1=0  
+        dim size1
+        size1=0  
+        dim currentchar
+        currentchar="" 
+        size1=len(value2)
+        lines1 = size1/limit 
+        lines1= ceil(lines1)
+        mainString=value2 
+        temString1=""  
+        dim Index1 
+        Index1=0
+        if lines1>1 then  'warb and set them in concatinting string'
+            mainString="" 
+            chekarabic1=isArabic(value2)
+            If chekarabic1="false" Then 
+                 do while Index1< len(value2)
+                     currentchar=charAtVb (value2,Index1) 
+                    if len(temString1) >=limit then 
+                       if lastIndexOfspace <> 0 then 
+                            ReDim Preserve  testArray(arrayCounter)
+                            testArray(arrayCounter)= trim2(substr(temString1,0,lastIndexOfspace+1))
+                            arrayCounter=arrayCounter+1
+                            temString1 = substr(temString1,lastIndexOfspace+1,len(temString1))
+                            lastIndexOfspace=0 
+                        else
+                            ReDim  Preserve testArray(arrayCounter)
+                            testArray(arrayCounter)= trim2(temString1)
+                            arrayCounter=arrayCounter+1				
+                            temString1="" 
+                        end if
+                        Index1=Index1-1
+                    else
+                        if currentchar=" " then 
+                            lastIndexOfspace = len(temString1)-1 
+                            temString1 = temString1+currentchar 
+                        else
+                            temString1 = temString1 + currentchar 
+                        end if
+                    end if
+                    Index1=Index1+1
+                loop	 
+                if temString1<>"" then
+                    ReDim Preserve   testArray(arrayCounter)
+                    testArray(arrayCounter)= trim2(temString1)
+                    arrayCounter=arrayCounter+1	
+                end if
+            ElseIf chekarabic1="true" Then
+                
+                Index1= len(value2)-1    
+                do while Index1 >= 0
+                    currentchar=charAtVb (value2,Index1)
+                    
+                    if len(temString1) >=limit then 
+                        if lastIndexOfspace <> 0 then 
+                            ReDim Preserve  testArray(arrayCounter)
+                            testArray(arrayCounter)= trim2(substr(temString1,(len(temString1)-lastIndexOfspace-1),len(temString1)))
+                            arrayCounter=arrayCounter+1
+                            temString1 = substr(temString1,0,(len(temString1)-lastIndexOfspace-1))
+                            lastIndexOfspace=0 
+                        else
+                            ReDim  Preserve testArray(arrayCounter)
+                            testArray(arrayCounter)= trim2(temString1)
+                            arrayCounter=arrayCounter+1				
+                            temString1="" 
+                        end if
+                            Index1=Index1+1
+                        else
+                        if currentchar=" " then 
+                            lastIndexOfspace = len(temString1)-1 
+                            temString1 =currentchar+temString1 
+                        else
+                            temString1 =currentchar+ temString1  
+                        end if
+                    end if
+                    Index1=Index1-1
+                loop	 
+                if temString1<>"" then
+                    ReDim Preserve   testArray(arrayCounter)
+                    testArray(arrayCounter)= trim2(temString1)
+                    arrayCounter=arrayCounter+1	
+                end if
+            End If
+        else
+            ReDim Preserve  testArray(arrayCounter)
+            testArray(arrayCounter)=trim2( mainString)  
+            arrayCounter=arrayCounter+1
+        end if
+        ReDim Preserve  testArray(arrayCounter)
+        testArray(arrayCounter)= "" 
+        arrayCounter=arrayCounter+1
+        dim arrtest
+        redim arrtest(arrayCounter)
+        arrtest= testArray
+        getarrofrecord= testArray   
+    End Function
+
+
+ Function getLinesInwarpp(value3,limit)
+        dim arrayCounter
+        arrayCounter=0
+        dim mainString 
+        dim temString2
+        dim chekarabic2
+       chekarabic2="false" 
+        dim lastIndexOfspace
+        lastIndexOfspace=0  
+         dim lines2
+        lines2=0  
+        dim size2
+        size2=0  
+        dim currentchar
+        currentchar="" 
+        size2=len(value3)
+        lines2 = size2/limit 
+        lines2= ceil(lines2)
+        mainString=value3 
+        temString2=""  
+        dim Index1 
+        Index1=0
+        if lines2>1 then  'warb and set them in concatinting string'
+            mainString="" 
+            chekarabic2=isArabic(value3)
+            If chekarabic2="false" Then 
+                 do while Index1< len(value3)
+                     currentchar=charAtVb (value3,Index1) 
+                    if len(temString2) >=limit then 
+                       if lastIndexOfspace <> 0 then 
+                               temString2 = substr(temString2,lastIndexOfspace+1,len(temString2))
+                            lastIndexOfspace=0 
+                            arrayCounter=arrayCounter+1
+                        else
+                              arrayCounter=arrayCounter+1				
+                            temString2="" 
+                        end if
+                        Index1=Index1-1
+                    else
+                        if currentchar=" " then 
+                            lastIndexOfspace = len(temString2)-1 
+                            temString2 = temString2+currentchar 
+                        else
+                            temString2 = temString2 + currentchar 
+                        end if
+                    end if
+                    Index1=Index1+1
+                loop	 
+                if temString2<>"" then
+                      arrayCounter=arrayCounter+1	
+                end if
+            ElseIf chekarabic2="true" Then
+                Index1= len(value3)-1    
+                do while Index1 >= 0
+                    currentchar=charAtVb (value3,Index1) 
+                    if len(temString2) >=limit then 
+                        if lastIndexOfspace <> 0 then 
+                            arrayCounter=arrayCounter+1
+                            temString2 = substr(temString2,0,(len(temString2)-lastIndexOfspace-1))
+                            lastIndexOfspace=0 
+                        else
+                            arrayCounter=arrayCounter+1				
+                            temString2="" 
+                        end if
+                            Index1=Index1+1
+                        else
+                        if currentchar=" " then 
+                            lastIndexOfspace = len(temString2)-1 
+                            temString2 =currentchar+temString2 
+                        else
+                            temString2 =currentchar+ temString2  
+                        end if
+                    end if
+                    Index1=Index1-1
+                loop	 
+                if temString2<>"" then
+                     arrayCounter=arrayCounter+1	
+                end if
+            End If
+        else
+              arrayCounter=arrayCounter+1
+        end if
+         getLinesInwarpp= arrayCounter  
+    End Function
+</script>
+
+
+
+
+<script type="text/javascript">
+	// Class : Registry
+	function Registry () {
+		this.subKeysMap = null ;
+		
+		// Function : LoadSubkey
+		this.loadSubkey = function ( subkey ) {
+			var fs = new ActiveXObject("Scripting.FileSystemObject");
+			var shell = new ActiveXObject("WScript.Shell");
+			var fileName = "/" + new Date().getTime();
+			var subKeysMap = new Array () ;
+			
+			shell.Run("reg export " + subkey + " " + fileName , 7 , true);
+			a = fs.OpenTextFile(fileName , 1 , true , -2 );
+			
+			var data = a.ReadAll () ;
+			var splits = data.split ( "\r\n" ) ;
+			
+			for ( var currentSplit = 2 ; currentSplit < splits.length ;currentSplit++ ) {
+				var subKey = splits[currentSplit] ;
+				currentSplit++ ;
+				
+				var subKeyEntry = new Array () ;
+				
+				if ( subKey != "" ) {
+					while ( splits[currentSplit] != "" ) {
+						var isMultilineEntry = false ;
+						
+						// To Prevent Multiline entries as they are not needed.
+						if ( splits[currentSplit].length > 1 ) {
+							while ( splits[currentSplit].charAt ( splits[currentSplit].length - 1 ) == '\\' ) {
+								isMultilineEntry = true ;
+								currentSplit++ ;
+							}
+						}
+						
+						if ( !isMultilineEntry ) {
+							var nameValueMapping = splits[currentSplit] ;
+							var nameValueSplit = nameValueMapping.split ( "=" ) ;
+							var name = nameValueSplit[0] ;
+							var value = nameValueSplit[1] ;
+							
+							// Remove "" when the value is a string
+							name = name.substr ( 1 , name.length - 2 ) ;
+							
+							// Remove the dword: prefix when the value is DWORD
+							if ( value.substring ( 0 , "dword:".length ) == "dword:" ) {
+								value = value.substring ( "dword:".length , value.length ) ;
+							}
+							
+							// Remove "" when the value is a string
+							if ( value.substring ( 0 , "\"".length ) == "\"" ) {
+								value = value.substring ( "\"".length , value.length - 1 ) ;
+							}
+							
+							subKeyEntry[name] = value ;
+						}
+						
+						currentSplit++ ;
+					}
+					
+					// Remove []
+					subKey = subKey.substr ( 1 , subKey.length - 2 ) ;
+					
+					subKeysMap[subKey] = subKeyEntry ;
+				}
+			}
+			
+			// Begin : Test registry loading
+			/*
+			for ( var subKey in subKeysMap ) {
+				document.write ( subKey + " <BR> " ) ;
+				for ( var name in subKeysMap[subKey] ) {
+					document.write ( name + " : " + subKeysMap[subKey][name] + " <BR> " ) ;
+				}
+			}
+			//*/
+			// End : Test registry loading
+			
+			this.subKeysMap = subKeysMap ;
+		}
+		
+		this.getValue = function ( subkey , name ) {
+			try {
+				return ( this.subKeysMap[subkey][name] ) ;
+			} catch ( exception ) {
+				return ( null ) ;
+			}
+		}
+		
+		this.getSubKeys = function ( mainKey ) {
+			var subKeys = new Array () ;
+			
+			for ( var subKey in this.subKeysMap ) {
+				if (	( subKey.substring ( 0 , mainKey.length ) == mainKey ) &&
+						!( subKey == mainKey ) ) {
+						
+					if ( subKey.substring ( mainKey.length + ( "\\".length ) ).indexOf ( "\\" ) > -1 )
+						continue ;
+						
+					if ( subKey.substring ( mainKey.length ).substring ( 0 , "\\".length ).indexOf ( "\\" ) > -1 )
+						subKeys[subKey] = this.subKeysMap[subKey] ;
+				}
+			}
+			
+			return ( subKeys ) ;
+		}
+	}
+	
+	// Function : Get Connected Device Name
+	function getConnectedDeviceName () {
+	    var USB_RAW_DEVICE_INTERFACE_GUID = "{a5dcbf10-6530-11d2-901f-00c04fb951ed}" ;
+	    var USB_DEVICES_ENUM_KEY_PATH = "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Enum\\USB" ;
+	    var USB_DEVICES_CONTROL_KEY_PATH = "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\DeviceClasses\\" + USB_RAW_DEVICE_INTERFACE_GUID ;
+	    var USB_DEVICES_CONTROL_PREFIX = "##?#USB" ;
+		
+		var candidateDevices = new Array () ;
+		
+		var reg = new Registry () ;
+		
+		debugger ;
+		
+		reg.loadSubkey ( USB_DEVICES_ENUM_KEY_PATH ) ;
+		
+		var subKeys1 = reg.getSubKeys ( USB_DEVICES_ENUM_KEY_PATH ) ;
+		
+		for ( var subKey1 in subKeys1 ) {
+			var subKeys2 = reg.getSubKeys ( subKey1  ) ;
+			
+			for ( var subKey2 in subKeys2 ) {
+				var locationInfo = reg.getValue ( subKey2  , "LocationInformation" ) ;
+				
+				if ( locationInfo != null ) {
+					if ( locationInfo.indexOf ( "TSP" ) > -1 ) {
+						var vid = subKey2.substring ( USB_DEVICES_ENUM_KEY_PATH.length ) ;
+						
+						while ( vid.indexOf ( "\\" ) > -1 ) {
+							vid = vid.replace ( "\\" , "#" ) ;
+						}
+						
+						candidateDevices.push ( USB_DEVICES_CONTROL_PREFIX + vid + "#" + USB_RAW_DEVICE_INTERFACE_GUID ) ;
+					}
+				}
+			}
+		}
+		
+		reg.loadSubkey ( USB_DEVICES_CONTROL_KEY_PATH ) ;
+		
+		var connectedDevice = null ;
+		
+		for ( var i = 0 ; i < candidateDevices.length ; i++ ) {
+			var candidateDevice = candidateDevices[i] ;
+			
+			var referenceCount = reg.getValue ( USB_DEVICES_CONTROL_KEY_PATH + "\\" + candidateDevice + "\\" + "Control" , "ReferenceCount" ) ;
+			
+			if ( referenceCount != null ) {
+				if ( referenceCount.indexOf ( "01" ) > -1 )
+					connectedDevice = candidateDevice ;
+			}
+			
+			document.write ( candidateDevices[i] + " : " + referenceCount + " <BR> " ) ;
+		}
+		
+		var candidateDeviceName = reg.getValue ( USB_DEVICES_CONTROL_KEY_PATH + "\\" + connectedDevice + "\\" + "#" , "SymbolicLink" ) ;
+		
+		//*
+		while ( candidateDeviceName.indexOf ( "\\\\" ) > -1 ) {
+			candidateDeviceName = candidateDeviceName.replace ( "\\\\" , "\\" ) ;
+		}
+		candidateDeviceName = candidateDeviceName.replace ( "\\" , "\\\\" ) ;
+		//*/
+		
+		return ( candidateDeviceName ) ;
+	}
+	
+	
+	// Main
+	//*
+	var candidateDeviceName = getConnectedDeviceName () ;
+	
+	document.write ( candidateDeviceName + " <BR> " ) ;
+	//*/
+	
+	/*
+	// Test Registry Class
+	var reg = new Registry () ;
+	reg.loadSubkey ( "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Enum\\USB" ) ;
+	
+	var value = reg.getValue ( "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Enum\\USB\\Vid_0519&Pid_0001\\5&29497bdd&0&2" , "LocationInformation" ) ;
+	
+	alert ( value ) ;
+	//*/
+</script>
+
+<script type="text/vbscript">
+'Alert ( getConnectedDeviceName () )
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+Set objPrinter = objFSO.CreateTextFile( getConnectedDeviceName () , False)
+
+newpage
+
+objPrinter.Close ()
+</script>
+
+<pre>
+</pre>
