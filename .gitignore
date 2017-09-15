@@ -3,3 +3,15 @@
 /Test-JSoup/target/
 /Test-JSch/target/
 /TestJCabi/target/
+/Test-Quartz/target/
+/TestRegexSplit/nbproject/private/
+/TestRegexSplit/build/
+/TestDateFormat/nbproject/private/
+/TestDateFormat/build/
+/TestDateFormat/dist/
+/TestMultipleURLsSingleServlet/nbproject/private/
+/TestMultipleURLsSingleServlet/build/
+/akka-test/target/
+/Test-JWT-Nimbus-Jose/target/
+/Test-ZipInputStream/target/
+/TestWSDLValidation/target/
